@@ -1,0 +1,163 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+
+	fragment@0 {
+		target = <&dpm>;
+
+		__overlay__ {
+			#address-cells = <0x02>;
+			#size-cells = <0x01>;
+			version = <0x64>;
+
+			security {
+				cp_mem_not_clear = <0x00>;
+				dbg_mem_enable = <0x00>;
+				seh_enable = <0x00>;
+				pm_test_enable = <0x00>;
+				seclog_enable = <0x00>;
+				sdm_enable = <0x00>;
+			};
+
+			feature {
+
+				dump-mode {
+					enabled = <0x01>;
+					file-support = <0x00>;
+					fastboot-support = <0x01>;
+				};
+
+				event {
+					method = "task_log", "work_log", "cpuidle_log", "suspend_log", "irq_log", "pmu_log", "freq_log", "dm_log", "regulator_log", "thermal_log", "acpm_log";
+				};
+			};
+
+			policy {
+
+				exception {
+					pre_log = <0x01>;
+					el1_da = <0x00>;
+					el1_ia = <0x00>;
+					el1_undef = <0x00>;
+					el1_sp_pc = <0x00>;
+					el1_inv = <0x00>;
+					el1_serror = <0x00>;
+				};
+			};
+		};
+	};
+
+	fragment@1 {
+		target = <&dss>;
+
+		__overlay__ {
+			panic_to_wdt = <0x00>;
+		};
+	};
+
+	fragment@2 {
+		target = <&log_arrdumpreset>;
+
+		__overlay__ {
+			status = "disabled";
+		};
+	};
+
+	fragment@3 {
+		target = <&log_arrdumppanic>;
+
+		__overlay__ {
+			status = "disabled";
+		};
+	};
+
+	fragment@4 {
+		target = <&log_fatal>;
+
+		__overlay__ {
+			status = "disabled";
+		};
+	};
+
+	fragment@5 {
+		target = <&log_first>;
+
+		__overlay__ {
+			status = "disabled";
+		};
+	};
+
+	fragment@6 {
+		target = <&log_platform>;
+
+		__overlay__ {
+			reg = <0x00 0xf0210000 0x200000>;
+		};
+	};
+
+	fragment@7 {
+		target = <&log_s2d>;
+
+		__overlay__ {
+			status = "disabled";
+		};
+	};
+
+	fragment@8 {
+		target = <&log_kevents>;
+
+		__overlay__ {
+			reg = <0x00 0xf2b50000 0x85000>;
+		};
+	};
+
+	fragment@9 {
+		target = <&ehld_dbgc>;
+
+		__overlay__ {
+			interval = <0x3e8>;
+			warn-count = <0x05>;
+		};
+	};
+
+	fragment@10 {
+		target = <&itmon>;
+
+		__overlay__ {
+			err_fatal = <0x03>;
+			err_drex_tmout = <0x03>;
+			err_ip = <0x01>;
+			err_cpu = <0x00>;
+			err_cp = <0x00>;
+			err_chub = <0x00>;
+			panic_count = <0x0a>;
+		};
+	};
+
+	fragment@11 {
+		target = <&memlogger_policy>;
+
+		__overlay__ {
+			samsung,log-level = <0x02>;
+			samsung,file-default-status = <0x00>;
+			samsung,mem-constraint = <0x01>;
+			samsung,mem-to-file-allow = <0x00>;
+		};
+	};
+
+	__fixups__ {
+		dpm = "/fragment@0:target:0";
+		dss = "/fragment@1:target:0";
+		log_arrdumpreset = "/fragment@2:target:0";
+		log_arrdumppanic = "/fragment@3:target:0";
+		log_fatal = "/fragment@4:target:0";
+		log_first = "/fragment@5:target:0";
+		log_platform = "/fragment@6:target:0";
+		log_s2d = "/fragment@7:target:0";
+		log_kevents = "/fragment@8:target:0";
+		ehld_dbgc = "/fragment@9:target:0";
+		itmon = "/fragment@10:target:0";
+		memlogger_policy = "/fragment@11:target:0";
+	};
+};

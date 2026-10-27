@@ -1,0 +1,71 @@
+{
+  "source": "/home/sc0/Projects/extractor/BL_G990EXXUIHYJ2_G990EXXUIHYJ2_MQB102219315_REV01_user_low_ship_MULTI_CERT/sboot.bin",
+  "total_size": 4194304,
+  "verified_payload_size": 3994416,
+  "components": [
+    {
+      "file": "01_epbl.bin",
+      "range": "0x0 - 0x2bc0",
+      "size": 11200,
+      "desc": "Early Primary Boot Loader (EPBL)"
+    },
+    {
+      "file": "02_dram_init.bin",
+      "range": "0x2bc0 - 0x16000",
+      "size": 78912,
+      "desc": "DRAM calibration & parameter tables"
+    },
+    {
+      "file": "03_bl2.bin",
+      "range": "0x16000 - 0x8c000",
+      "size": 483328,
+      "desc": "Secondary Boot Loader (BL2)"
+    },
+    {
+      "file": "04_device_tree.dtb",
+      "range": "0xea000 - 0xeaa84",
+      "size": 2692,
+      "desc": "Flattened Device Tree Overlay (DTS decompiled in 04_device_tree.dts)"
+    },
+    {
+      "file": "05_main_sboot.bin",
+      "range": "0xec000 - 0x38edf0",
+      "size": 2764272,
+      "desc": "Main SBOOT OS (LK runtime, Odin protocol, PIT engine)"
+    },
+    {
+      "file": "06_athens_coproc_fw.bin",
+      "range": "0x38f000 - 0x3cedf0",
+      "size": 261616,
+      "desc": "Athens Co-processor Firmware Stage v1.5"
+    },
+    {
+      "file": "07_samsung_signer_footer.bin",
+      "range": "0x3cf000 - 0x3cf330",
+      "size": 816,
+      "desc": "Samsung SignerVer03 Metadata Block"
+    },
+    {
+      "file": "08_bootloader_signed_payload.bin",
+      "range": "0x0 - 0x3cf330",
+      "size": 3994416,
+      "desc": "Verified Bootloader Partition Payload"
+    },
+    {
+      "file": "09_avb_vbmeta.img",
+      "range": "0x3d0000 - 0x3d0840",
+      "size": 2112,
+      "desc": "AVB 1.1 VBMeta Descriptor Block"
+    },
+    {
+      "file": "09_avb_public_key.pem",
+      "desc": "4096-bit RSA AVB Public Key (PEM)"
+    },
+    {
+      "file": "10_avb_footer.bin",
+      "range": "0x3fffc0 - 0x400000",
+      "size": 64,
+      "desc": "AVB 1.0 Partition Footer (AVBf)"
+    }
+  ]
+}
